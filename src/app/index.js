@@ -1,5 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './components/Dashboard';
@@ -14,10 +16,15 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="main" className="col-8">
-            Main
+          <div className="main" className="col-xl-10 col-lg-10 col-md-9 col-sm-9">
+            {/* <Route path="/" component={Dashboard} /> */}
+            <Route path="/settings" component={Settings} />
+            <Route path="/personality" component={Personality} />
+            <Route path="/moods" component={Moods} />
+            <Route path="/newentry" component={NewEntry} />
+            <Route path="/diary" component={Diary} />
           </div>
-          <div className="sidebar" className="col-4">
+          <div className="sidebar" className="col-xl-2 col-lg-2 col-md-3 col-sm-3">
             <Sidebar />
           </div>
         </div>
@@ -26,4 +33,11 @@ class App extends React.Component {
   }
 }
 
-render(<App/>, window.document.getElementById('app'));
+
+render((
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+), document.getElementById('app'));
+
+//render(<App/>, window.document.getElementById('app'));
