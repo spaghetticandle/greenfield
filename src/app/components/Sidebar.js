@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export class Sidebar extends React.Component {
   render() {
@@ -8,16 +9,16 @@ export class Sidebar extends React.Component {
           <a href="#">Dashboard</a>
         </div>
         <div className="row">
-          <a href="#">Settings</a>
+          <Link to="/settings">Settings</Link>
         </div>
         <div className="row">
           Your Data
           <div className="container">
             <div className="row">
-              <a href="#">Personality Profile</a>
+              <Link to="/personality">Personality Profile</Link>
             </div>
             <div className="row">
-              <a href="#">Moods</a>
+              <Link to="/moods">Moods</Link>
             </div>
             </div>
         </div>
@@ -25,10 +26,10 @@ export class Sidebar extends React.Component {
           Diary
           <div className="container">
             <div className="row">
-              <a href="#">New Diary Entry</a>
+              <Link to="/newentry">New Diary Entry</Link>
             </div>
             <div className="row">
-              <a href="#">Your Diary</a>
+              <Link to="/diary">Your Diary</Link>
             </div>
           </div>
         </div>
