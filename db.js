@@ -2,10 +2,13 @@ const mysql = require("mysql");
 const Sequelize = require("sequelize");
 
 
-const db = new Sequelize("greenfield", "root", "", {
-  host: "localhost",
-  dialect: "mysql"
-});
+// const db = new Sequelize("DB_DATABASE", "DB_USERNAME", "DB_PASSWORD", {
+//   host: "DB_HOST",
+//   port: DB_PORT,
+//   dialect: "DB_CONNECTION"
+// });
+
+const db = new Sequelize('DB_CONNECTION://DB_USERNAME@DB_HOST:DB_PORT/DB_DATABASE');
 
 db
   .authenticate()
