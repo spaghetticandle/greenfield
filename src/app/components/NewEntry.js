@@ -1,11 +1,14 @@
 import React from 'react';
-import ToneAnalyzerV3 from 'watson-developer-cloud/tone-analyzer/v3';
+// import ToneAnalyzerV3 from 'watson-developer-cloud/tone-analyzer/v3';
+
+// When button is clicked
+  // Run a function that makes a request to watson's API passing in the input text as a param
 
 /*
 const tone_analyzer = new ToneAnalyzerV3({
-  username: '{username}',
-  password: '{password}',
-  version_date: '{version}'
+  username: WATSON_USERNAME,
+  password: WATSON_PASSWORD,
+  version_date: '2016-05-19'
   headers: {
     'X-Watson-Learning-Opt-Out': 'true'
   }
@@ -40,6 +43,10 @@ fetch("https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone?sente
 */
 
 export class NewEntry extends React.Component {
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('click handler success');
+  }
   render() {
     return (
       <div className="mainContainer">
@@ -50,7 +57,7 @@ export class NewEntry extends React.Component {
           <form>
             <label for="newDiaryEntry">Your New Diary Entry:</label>
             <textarea className="form-control" id="newDiaryEntry"></textarea>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>Submit</button>
           </form>
         </div>
       </div>
