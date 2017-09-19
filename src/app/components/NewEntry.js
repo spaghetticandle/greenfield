@@ -43,9 +43,17 @@ fetch("https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone?sente
 */
 
 export class NewEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {entry: ''};
+  }
+  handleEntryChange(event) {
+    this.setState({entry: event.target.value});
+  }
   handleSubmit(event) {
     event.preventDefault();
     console.log('click handler success');
+    console.log('Entry', this.state.entry);
   }
   render() {
     return (
@@ -55,8 +63,8 @@ export class NewEntry extends React.Component {
         </div>
         <div className="mainBody">
           <form>
-            <label for="newDiaryEntry">Your New Diary Entry:</label>
-            <textarea className="form-control" id="newDiaryEntry"></textarea>
+            <label htmlFor="newDiaryEntry">Your New Diary Entry:</label>
+            <textarea className="form-control" id="newDiaryEntry" onChange={this.handleEntryChange.bind(this)}></textarea>
             <button type="submit" className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>Submit</button>
           </form>
         </div>
