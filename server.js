@@ -8,10 +8,10 @@ const path = require("path");
 const app = express();
 const mysql = require("mysql");
 const port = process.env.PORT;
-const Sequelize = require("sequelize");
+//const Sequelize = require("sequelize");
 const router = express.Router();
 const bodyParser = require("body-parser");
-const db = require('./db.js');
+//const db = require('./db.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
