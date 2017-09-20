@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/violet-suber/greenfield#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
@@ -31,7 +32,8 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "sequelize": "^4.8.3",
-    "watson-developer-cloud": "^2.39.0"
+    "watson-developer-cloud": "^2.39.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -39,6 +41,10 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
     "webpack": "^3.5.6",
     "webpack-dev-middleware": "^1.12.0"
   },
