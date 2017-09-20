@@ -54,8 +54,8 @@ const tone_analyzer = new ToneAnalyzerV3({
 });
 
 app.post("/api/newentry", (req, res) => {
-  console.log(req);
-  const analysis = tone_analyzer.tone(req.body.text, function (error, response) {if (error) {
+  console.log(req.body);
+  const analysis = tone_analyzer.tone(req.body, function (error, response) {if (error) {
       console.log('error:', error);
     } else
     console.log(JSON.stringify(response, null, 2));
