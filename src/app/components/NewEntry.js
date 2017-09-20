@@ -1,5 +1,5 @@
 import React from 'react';
-// import ToneAnalyzerV3 from 'watson-developer-cloud/tone-analyzer/v3';
+import ToneAnalyzerV3 from 'node_modules/../watson-developer-cloud/tone-analyzer/v3';
 
 // When button is clicked
   // Run a function that makes a request to watson's API passing in the input text as a param
