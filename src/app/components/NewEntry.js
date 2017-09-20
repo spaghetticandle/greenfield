@@ -52,7 +52,7 @@ export class NewEntry extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const params = {entry: this.state.entry};
+    const params = {body: this.state.entry};
     console.log('click handler success');
     console.log('Entry', params);
   }
