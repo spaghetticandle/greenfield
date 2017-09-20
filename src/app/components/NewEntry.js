@@ -52,9 +52,25 @@ export class NewEntry extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const params = {body: this.state.entry};
-    console.log('click handler success');
-    console.log('Entry', params);
+    const params = {text: this.state.entry};
+    const tone_analyzer = new ToneAnalyzerV3({
+      username: WATSON_USERNAME,
+      password: WATSON_PASSWORD,
+      version_date: '2016-05-19',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'X-Watson-Learning-Opt-Out': 'true'
+      }
+    });
+    tone_analyzer.tone(params, function (error, response) {
+      if (error) {
+        console.log('error:', error);
+      } else
+        console.log(JSON.stringify(response, null, 2));
+      }
+    );
+    // console.log('click handler success');
+    // console.log('Entry', params);
   }
   render() {
     return (
