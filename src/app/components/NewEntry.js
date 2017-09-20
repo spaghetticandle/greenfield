@@ -1,7 +1,10 @@
 import React from 'react';
-import ToneAnalyzerV3 from 'node_modules/../watson-developer-cloud/tone-analyzer/v3';
+import axios from 'axios';
 
-// When button is clicked
+// import tone_analyzer from '../../../server.js';
+// import ToneAnalyzerV3 from 'node_modules/../watson-developer-cloud/tone-analyzer/v3';d
+
+// When button is clickfdgdfgdfged
   // Run a function that makes a request to watson's API passing in the input text as a param
 
 /*
@@ -53,24 +56,29 @@ export class NewEntry extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const params = {text: this.state.entry};
-    const tone_analyzer = new ToneAnalyzerV3({
-      username: WATSON_USERNAME,
-      password: WATSON_PASSWORD,
-      version_date: '2016-05-19',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'X-Watson-Learning-Opt-Out': 'true'
-      }
+    axios.post('api/newentry', params).
+    then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error);
     });
-    tone_analyzer.tone(params, function (error, response) {
-      if (error) {
-        console.log('error:', error);
-      } else
-        console.log(JSON.stringify(response, null, 2));
-      }
-    );
-    // console.log('click handler success');
-    // console.log('Entry', params);
+
+    // const tone_analyzer = new ToneAnalyzerV3({
+    //   username: REACT_APP_WATSON_USERNAME,
+    //   password: REACT_APP_WATSON_PASSWORD,
+    //   version_date: '2016-05-19',
+    //   headers: {
+    //     'Access-Control-Allow-Origin': '*',
+    //     'X-Watson-Learning-Opt-Out': 'true'
+    //   }
+    // });
+    // tone_analyzer.tone(params, function (error, response) {
+    //   if (error) {
+    //     console.log('error:', error);
+    //   } else
+    //     console.log(JSON.stringify(response, null, 2));
+    //   }
+    // );
   }
   render() {
     return (
