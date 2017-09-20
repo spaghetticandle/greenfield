@@ -52,8 +52,9 @@ export class NewEntry extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
+    const params = {entry: this.state.entry};
     console.log('click handler success');
-    console.log('Entry', this.state.entry);
+    console.log('Entry', params);
   }
   render() {
     return (
