@@ -6,7 +6,7 @@ export class Sidebar extends React.Component {
     return(
       <div className="container">
         <div className="row">
-          <a href="#">Dashboard</a>
+          <Link to="/dashboard">Dashboard</Link>
         </div>
         <div className="row">
           <Link to="/settings">Settings</Link>
