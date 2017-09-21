@@ -8,10 +8,12 @@ const path = require("path");
 const app = express();
 const mysql = require("mysql");
 const port = process.env.PORT;
-const Sequelize = require("sequelize");
+//const Sequelize = require("sequelize");
 const router = express.Router();
 const bodyParser = require("body-parser");
-const db = require('./db.js');
+//const db = require('./db.js');
+
+const ToneAnalyzerV3 = require('node_modules/../watson-developer-cloud/tone-analyzer/v3');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -39,6 +41,27 @@ app.use(webpackMiddleware(compiler, {
 app.get("/", (req, res) => {
   console.log("SERVING HTML");
   res.sendFile(__dirname + "/dist/index.html");
+});
+
+const tone_analyzer = new ToneAnalyzerV3({
+    username: process.env.REACT_APP_WATSON_USERNAME,
+    password: process.env.REACT_APP_WATSON_PASSWORD,
+    version_date: '2016-05-19',
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'X-Watson-Learning-Opt-Out': 'true'
+    }
+});
+
+app.post("/api/newentry", (req, res) => {
+  console.log(req.body);
+  const analysis = tone_analyzer.tone(req.body, function (error, response) {if (error) {
+      console.log('error:', error);
+    } else
+    console.log(JSON.stringify(response, null, 2));
+    }
+  );
+  res.send(analysis);
 });
 
 
@@ -69,3 +92,5 @@ app.listen(port, function() {
   console.log("listening on" + port);
 });
 console.log("Server working");
+
+module.exports.tone_analyzer = tone_analyzer;

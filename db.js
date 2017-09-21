@@ -2,10 +2,13 @@ const mysql = require("mysql");
 const Sequelize = require("sequelize");
 
 
-const db = new Sequelize("greenfield", "root", "", {
-  host: "localhost",
+const db = new Sequelize("test", "user", "pass", {
+  host: "192.168.99.100",
+  port: 3306,
   dialect: "mysql"
 });
+
+// const db = new Sequelize('DB_CONNECTION://DB_USERNAME@DB_HOST:DB_PORT/DB_DATABASE');
 
 db
   .authenticate()
@@ -13,7 +16,7 @@ db
     console.log("Connection has been established successfully.");
   })
   .catch(err => {
-    console.error("Unable to connect to the database:", err);
+    console.error("Unable to connect to the database:");
   });
 
 const User = db.define("User", {
