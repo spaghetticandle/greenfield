@@ -11,7 +11,8 @@ export class NewEntry extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const params = {text: this.state.entry};
+    const params = {text: this.state.entry,
+    sentences: false };
     axios.post('api/newentry', params).
     then(response => {
       console.log(response);
