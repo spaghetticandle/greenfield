@@ -15,6 +15,7 @@ const bodyParser = require("body-parser");
 const fakedata = require('./fakedata.json');
 
 const ToneAnalyzerV3 = require('node_modules/../watson-developer-cloud/tone-analyzer/v3');
+const PersonalityInsightsV3 = require('node_modules/../watson-developer-cloud/personality-insights/v3');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -54,8 +55,17 @@ const tone_analyzer = new ToneAnalyzerV3({
     }
 });
 
+const personality_insights = new PersonalityInsightsV3({
+    username: process.env.REACT_APP_PERSONALITY_USERNAME,
+    password: process.env.REACT_APP_PERSONALITY_PASSWORD,
+    version_date: '2016-05-19',
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'X-Watson-Learning-Opt-Out': 'true'
+    }
+});
+
 app.post("/api/newentry", (req, res) => {
-  console.log(req.body);
   const analysis = tone_analyzer.tone(req.body, function (error, response) {if (error) {
       console.log('error:', error);
     } else
@@ -67,6 +77,17 @@ app.post("/api/newentry", (req, res) => {
 
 app.get("/api/diary", (req, res) => {
   res.send(fakedata);
+});
+
+app.post("/api/personality", (req, res) => {
+  personality_insights.profile(req.body, (error, response) => {
+    if (error) {
+      console.log('Error:', error);
+    } else {
+      console.log('Personality analysis successful');
+      res.send(response);
+    }  
+  });
 });
 
 // router.route("/posts").post((req, res) => {
