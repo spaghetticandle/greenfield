@@ -1,3 +1,18 @@
+require("dotenv").config();
+const webpack = require('webpack');
+const config = require('./webpack.config.js');
+const webpackMiddleware = require('webpack-dev-middleware');
+const compiler = webpack(config);
+const express = require("express");
+const path = require("path");
+const app = express();
+const mysql = require("mysql");
+const port = process.env.PORT;
+//const Sequelize = require("sequelize");
+const router = express.Router();
+const bodyParser = require("body-parser");
+//const db = require('./db.js');
+const fakedata = require('./fakedata.json');
 // require("dotenv").config();
 // const webpack = require('webpack');
 // const config = require('./webpack.config.js');
@@ -59,6 +74,10 @@ app.post("/api/newentry", (req, res) => {
     }
   );
   res.send(analysis);
+});
+
+app.get("/api/diary", (req, res) => {
+  res.send(fakedata);
 });
 
 //Models
