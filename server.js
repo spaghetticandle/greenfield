@@ -13,6 +13,7 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 //const db = require('./db.js');
 const fakedata = require('./fakedata.json');
+const fakedata2 = require('./fakedata2.json');
 
 const ToneAnalyzerV3 = require('node_modules/../watson-developer-cloud/tone-analyzer/v3');
 const PersonalityInsightsV3 = require('node_modules/../watson-developer-cloud/personality-insights/v3');
@@ -85,9 +86,14 @@ app.post("/api/personality", (req, res) => {
       console.log('Error:', error);
     } else {
       console.log('Personality analysis successful');
+      console.log(response);
       res.send(response);
     }  
   });
+});
+
+app.get("/api/personality_analysis", (req, res) => {
+    res.send(fakedata2);
 });
 
 // router.route("/posts").post((req, res) => {
