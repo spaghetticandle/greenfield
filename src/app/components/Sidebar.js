@@ -1,35 +1,38 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export class Sidebar extends React.Component {
   render() {
-    return(
+    return (
       <div className="container">
         <div className="row">
-          <Link to="/dashboard">Dashboard</Link>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </div>
         <div className="row">
-          <Link to="/settings">Settings</Link>
+          <NavLink to="/settings">Settings</NavLink>
         </div>
         <div className="row">
           Your Data
           <div className="container">
             <div className="row">
-              <Link to="/personality">Personality Profile</Link>
+              <NavLink to="/personality">Personality Profile</NavLink>
             </div>
             <div className="row">
-              <Link to="/moods">Moods</Link>
+              <NavLink to="/moods">Moods</NavLink>
             </div>
-            </div>
+          </div>
         </div>
         <div className="row">
           Diary
           <div className="container">
             <div className="row">
-              <Link to="/newentry">New Diary Entry</Link>
+              <NavLink to="/newentry">New Diary Entry</NavLink>
             </div>
             <div className="row">
-              <Link to="/diary">Your Diary</Link>
+              <NavLink to="/diary">Your Diary</NavLink>
+            </div>
+            <div className="row">
+              <NavLink to="/login">Login</NavLink>
             </div>
           </div>
         </div>
