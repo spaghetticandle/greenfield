@@ -12,6 +12,7 @@ const port = process.env.PORT;
 const router = express.Router();
 const bodyParser = require("body-parser");
 //const db = require('./db.js');
+const fakedata = require('./fakedata.json');
 
 const ToneAnalyzerV3 = require('node_modules/../watson-developer-cloud/tone-analyzer/v3');
 
@@ -64,6 +65,9 @@ app.post("/api/newentry", (req, res) => {
   res.send(analysis);
 });
 
+app.get("/api/diary", (req, res) => {
+  res.send(fakedata);
+});
 
 // router.route("/posts").post((req, res) => {
 //   let post = db.Post
