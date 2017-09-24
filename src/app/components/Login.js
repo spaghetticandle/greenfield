@@ -27,6 +27,30 @@ export class Login extends React.Component {
   // Process the form
   processForm(event) {
     event.preventDefault();
+    const loginUrl = '/login';
+    let xhr = new XMLHttpRequest();
+    const user = this.state.user.username;
+    const password = this.state.user.password;
+
+    xhr.open('POST', loginUrl, true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.addEventListener('load', function () {
+      let responseObject = JSON.parse(this.response);
+      console.log(responseObject);
+      if (responseObject.token) {
+        console.log('token:', responseObject.token);
+      } else {
+        console.log('No token received');
+      }
+    });
+
+    let sendObject = JSON.stringify({ name: user, password: password });
+
+    console.log('going to send', sendObject);
+
+    xhr.send(sendObject);
+
+
     console.log('name', this.state.user.username);
     console.log('password', this.state.user.password);
   }
