@@ -27,8 +27,6 @@ export class SignUp extends React.Component {
   // Process the form
   processForm(event) {
     event.preventDefault();
-    console.log('name', this.state.user.username);
-    console.log('password', this.state.user.password);
   }
   render() {
     return (
