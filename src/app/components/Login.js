@@ -1,5 +1,6 @@
 import React from 'react';
 import Auth from './Auth';
+import history from './history'
 
 export class Login extends React.Component {
   constructor(props) {
@@ -37,9 +38,9 @@ export class Login extends React.Component {
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.addEventListener('load', function () {
       let responseObject = JSON.parse(this.response);
-      console.log(responseObject);
       if (responseObject.token) {
         Auth.authenticateUser(responseObject.token);
+        history.push('/dashboard');
       } else {
         console.log('No token received');
       }
@@ -49,9 +50,6 @@ export class Login extends React.Component {
 
     xhr.send(sendObject);
 
-
-    console.log('name', this.state.user.username);
-    console.log('password', this.state.user.password);
   }
   render() {
     return (

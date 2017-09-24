@@ -1,7 +1,9 @@
 import React from 'react';
 import Auth from './Auth';
 import { NavLink } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import history from './history';
 
 export class Sidebar extends React.Component {
   constructor(props){
@@ -11,7 +13,7 @@ export class Sidebar extends React.Component {
   handleLogout(event){
     event.preventDefault();
     Auth.deauthenticateUser();
-    this.context.transitionTo('/');
+    history.push('/dashboard');
   }
   render() {
     return (
@@ -62,3 +64,5 @@ export class Sidebar extends React.Component {
 Sidebar.propTypes = {
 
 };
+
+// export default withRouter(Sidebar);
