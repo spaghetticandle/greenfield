@@ -18,9 +18,49 @@ const fakedata2 = require('./fakedata2.json');
 const ToneAnalyzerV3 = require('node_modules/../watson-developer-cloud/tone-analyzer/v3');
 const PersonalityInsightsV3 = require('node_modules/../watson-developer-cloud/personality-insights/v3');
 
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const passportJwt = require('passport-jwt');
+
+const ExtractJwt = passportJwt.ExtractJwt;
+const JwtStrategy = passportJwt.Strategy;
+
+const _ = require("lodash");
+
+const users = [
+  {
+    id: 1,
+    name: 'jonathanmh',
+    password: '%2yx4'
+  },
+  {
+    id: 2,
+    name: 'test',
+    password: 'test'
+  }
+];
+
+const jwtOptions = {}
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
+jwtOptions.secretOrKey = 'tasmanianDevil';
+
+const strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
+  console.log('payload received', jwt_payload);
+  // usually this would be a database call:
+  const user = users[_.findIndex(users, { id: jwt_payload.id })];
+  if (user) {
+    next(null, user);
+  } else {
+    next(null, false);
+  }
+});
+
+passport.use(strategy);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', router);
+app.use(passport.initialize());
 
 app.use(webpackMiddleware(compiler, {
         noInfo: false,
@@ -40,10 +80,31 @@ app.use(webpackMiddleware(compiler, {
         serverSideRender: false,
     }));
 
-  
 app.get("/", (req, res) => {
   console.log("SERVING HTML");
   res.sendFile(__dirname + "/dist/index.html");
+});
+
+app.post("/login", function (req, res) {
+  let name = '';
+  if (req.body.name && req.body.password) {
+    name = req.body.name;
+    const password = req.body.password;
+  }
+  // usually this would be a database call:
+  const user = users[_.findIndex(users, { name: name })];
+  if (!user) {
+    res.status(401).json({ message: "no such user found" });
+  }
+
+  if (user.password === req.body.password) {
+    // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
+    const payload = { id: user.id };
+    const token = jwt.sign(payload, jwtOptions.secretOrKey);
+    res.json({ message: "ok", token: token });
+  } else {
+    res.status(401).json({ message: "passwords did not match" });
+  }
 });
 
 const tone_analyzer = new ToneAnalyzerV3({
