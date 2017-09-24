@@ -80,10 +80,12 @@ app.use(webpackMiddleware(compiler, {
         serverSideRender: false,
     }));
 
-app.get("/", (req, res) => {
-  console.log("SERVING HTML");
-  res.sendFile(__dirname + "/dist/index.html");
-});
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// app.get("/", (req, res) => {
+//   console.log("SERVING HTML");
+//   res.sendFile(__dirname + "/dist/index.html");
+// });
 
 app.post("/login", function (req, res) {
   let name = '';
