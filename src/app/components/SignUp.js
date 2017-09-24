@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class Login extends React.Component {
+export class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ export class Login extends React.Component {
   changeUsername(event) {
     const user = this.state.user;
     user.username = event.target.value;
-    this.setState({ user });
+    this.setState({user});
   }
   changePassword(event) {
     const user = this.state.user;
@@ -27,25 +27,23 @@ export class Login extends React.Component {
   // Process the form
   processForm(event) {
     event.preventDefault();
-    console.log('name', this.state.user.username);
-    console.log('password', this.state.user.password);
   }
   render() {
     return (
       <div className="mainContainer">
         <div className="header">
-          <h1>Log In</h1>
+          <h1>Sign Up</h1>
         </div>
         <div className="mainBody">
-          <div className="loginForm">
+          <div className="signupForm">
             <form onSubmit={this.processForm}>
               <div className="form-group">
-                <input type="loginUsername" className="form-control" id="loginUsername" placeholder="username" onChange={this.changeUsername}/>
+                <input type="signupUsername" className="form-control" id="signupUsername" placeholder="username" onChange={this.changeUsername}/>
               </div>
               <div className="form-group">
-                <input type="loginPassword" className="form-control" id="loginPassword" placeholder="password" onChange={this.changePassword}/>
+                <input type="signupPassword" className="form-control" id="signupPassword" placeholder="password" onChange={this.changePassword}/>
               </div>
-              <button type="submit" className="btn btn-primary">Log In</button>
+              <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
           </div>
         </div>
