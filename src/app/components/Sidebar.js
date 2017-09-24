@@ -34,6 +34,9 @@ export class Sidebar extends React.Component {
             <div className="row">
               <NavLink to="/login">Login</NavLink>
             </div>
+            <div className="row">
+              <NavLink to="/signup">Sign Up</NavLink>
+            </div>
           </div>
         </div>
       </div>
