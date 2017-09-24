@@ -11,45 +11,48 @@ export class Sidebar extends React.Component {
   handleLogout(event){
     event.preventDefault();
     Auth.deauthenticateUser();
-    // this.props.history.push('/');
+    this.context.transitionTo('/');
   }
   render() {
     return (
       <div className="container">
-        <div className="row">
-          <NavLink to="/dashboard">Dashboard</NavLink>
-        </div>
-        <div className="row">
-          <NavLink to="/settings">Settings</NavLink>
-        </div>
-        <div className="row">
-          Your Data
-          <div className="container">
-            <div className="row">
-              <NavLink to="/personality">Personality Profile</NavLink>
-            </div>
-            <div className="row">
-              <NavLink to="/moods">Moods</NavLink>
+        {Auth.isUserAuthenticated() ? (
+        <div className="authSidebar">
+          <div className="row">
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </div>
+          <div className="row">
+            <NavLink to="/settings">Settings</NavLink>
+          </div>
+          <div className="row">
+            Your Data
+            <div className="container">
+              <div className="row">
+                <NavLink to="/personality">Personality Profile</NavLink>
+              </div>
+              <div className="row">
+                <NavLink to="/moods">Moods</NavLink>
+              </div>
             </div>
           </div>
+          <div className="row">
+            Diary
+            <div className="container">
+              <div className="row">
+                <NavLink to="/newentry">New Diary Entry</NavLink>
+              </div>
+              <div className="row">
+                <NavLink to="/diary">Your Diary</NavLink>
+              </div>
+            </div>
+          </div> 
+        </div> ) : (' ')}
+        <div className="row">
+          {Auth.isUserAuthenticated() ? (<a href="#" onClick={this.handleLogout}>Log Out</a>) :
+          (<NavLink to="/loginform">Login</NavLink>) }
         </div>
         <div className="row">
-          Diary
-          <div className="container">
-            <div className="row">
-              <NavLink to="/newentry">New Diary Entry</NavLink>
-            </div>
-            <div className="row">
-              <NavLink to="/diary">Your Diary</NavLink>
-            </div>
-            <div className="row">
-              {Auth.isUserAuthenticated() ? (<a href="#" onClick={this.handleLogout}>Log Out</a>) :
-              (<NavLink to="/loginform">Login</NavLink>) }
-            </div>
-            <div className="row">
-              <NavLink to="/signup">Sign Up</NavLink>
-            </div>
-          </div>
+          {Auth.isUserAuthenticated() ? (' ') : (<NavLink to="/signup">Sign Up</NavLink>)}
         </div>
       </div>
     );
