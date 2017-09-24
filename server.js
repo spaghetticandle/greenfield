@@ -107,6 +107,10 @@ app.post("/login", function (req, res) {
   }
 });
 
+app.get("/secret", passport.authenticate('jwt', { session: false }), function (req, res) {
+  res.json("Success! You can not see this without a token");
+});
+
 const tone_analyzer = new ToneAnalyzerV3({
     username: process.env.REACT_APP_WATSON_USERNAME,
     password: process.env.REACT_APP_WATSON_PASSWORD,
