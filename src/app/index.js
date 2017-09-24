@@ -23,7 +23,7 @@ class App extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="main" className="col-xl-10 col-lg-10 col-md-9 col-sm-9">
-            {Auth.isUserAuthenticated() ? (<p>Logged In</p>) : (<p>Not Logged In</p>)}
+            {/* {Auth.isUserAuthenticated() ? (<p>Logged In</p>) : (<p>Not Logged In</p>)} */}
             <Switch>
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/settings" component={Settings} />
