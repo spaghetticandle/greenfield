@@ -12,6 +12,7 @@ import { Personality } from './components/Personality';
 import { Moods } from './components/Moods';
 import { NewEntry } from './components/NewEntry';
 import { Diary } from './components/Diary';
+import { SignUp } from './components/SignUp'
 
 class App extends React.Component {
   render() {
@@ -27,6 +28,7 @@ class App extends React.Component {
               <Route path="/newentry" component={NewEntry} />
               <Route path="/diary" component={Diary} />
               <Route path="/login" component={Login} />
+              <Route path="/signup" component={SignUp} />
             </Switch>
           </div>
           <div className="sidebar" className="col-xl-2 col-lg-2 col-md-3 col-sm-3">
