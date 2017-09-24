@@ -25,6 +25,7 @@
     "bcrypt-nodejs": "0.0.3",
 >>>>>>> Refactor server & db, add local auth
     "body-parser": "^1.18.1",
+    "d3": "^4.10.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
@@ -36,6 +37,8 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "react": "^15.6.1",
+    "react-d3-basic": "^1.6.11",
+    "react-d3-components": "^0.6.6",
     "react-dom": "^15.6.1",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
