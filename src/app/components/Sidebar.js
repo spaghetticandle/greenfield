@@ -1,7 +1,18 @@
 import React from 'react';
+import Auth from './Auth';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 export class Sidebar extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+  handleLogout(event){
+    event.preventDefault();
+    Auth.deauthenticateUser();
+    // this.props.history.push('/');
+  }
   render() {
     return (
       <div className="container">
@@ -32,7 +43,8 @@ export class Sidebar extends React.Component {
               <NavLink to="/diary">Your Diary</NavLink>
             </div>
             <div className="row">
-              <NavLink to="/loginform">Login</NavLink>
+              {Auth.isUserAuthenticated() ? (<a href="#" onClick={this.handleLogout}>Log Out</a>) :
+              (<NavLink to="/loginform">Login</NavLink>) }
             </div>
             <div className="row">
               <NavLink to="/signup">Sign Up</NavLink>

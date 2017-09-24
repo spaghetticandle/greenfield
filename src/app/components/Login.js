@@ -1,4 +1,5 @@
 import React from 'react';
+import Auth from './Auth';
 
 export class Login extends React.Component {
   constructor(props) {
@@ -38,15 +39,13 @@ export class Login extends React.Component {
       let responseObject = JSON.parse(this.response);
       console.log(responseObject);
       if (responseObject.token) {
-        console.log('token:', responseObject.token);
+        Auth.authenticateUser(responseObject.token);
       } else {
         console.log('No token received');
       }
     });
 
     let sendObject = JSON.stringify({ name: user, password: password });
-
-    console.log('going to send', sendObject);
 
     xhr.send(sendObject);
 
