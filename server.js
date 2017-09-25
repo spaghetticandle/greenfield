@@ -7,7 +7,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 // const mysql = require("mysql");
-const port = process.env.PORT;
+const PORT = process.env.PORT;
 //const Sequelize = require("sequelize");
 const router = express.Router();
 const bodyParser = require("body-parser");
@@ -240,8 +240,8 @@ var models = require("./app/models");
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
 });
-app.listen(process.env.PORT, function(err) {
-  if (!err) console.log("Site is live");
+app.listen(PORT, function(err) {
+  if (!err) console.log(`Listening on ${PORT}`);
   else console.log(err);
 });
 
