@@ -85,9 +85,6 @@ app.use(webpackMiddleware(compiler, {
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
-});
 
 // app.get("/", (req, res) => {
 //   console.log("SERVING HTML");
@@ -240,7 +237,9 @@ var models = require("./app/models");
 // app.get("/", function(req, res) {
 //   res.send("Welcome to Passport with Sequelize");
 // });
-
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+});
 app.listen(process.env.PORT, function(err) {
   if (!err) console.log("Site is live");
   else console.log(err);
