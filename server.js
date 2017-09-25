@@ -6,7 +6,7 @@ const compiler = webpack(config);
 const express = require("express");
 const path = require("path");
 const app = express();
-const mysql = require("mysql");
+// const mysql = require("mysql");
 const port = process.env.PORT;
 //const Sequelize = require("sequelize");
 const router = express.Router();
@@ -223,26 +223,25 @@ app.get("/api/personality_analysis", (req, res) => {
 var models = require("./app/models");
 
 //Routes
-var authRoute = require('./app/routes/auth.js')(app,passport);
+// var authRoute = require('./app/routes/auth.js')(app,passport);
 
 //load passport strategies 
-require('./app/config/passport/passport.js')(passport,models.user);
+// require('./app/config/passport/passport.js')(passport,models.user);
  
 // Sync Database
-models.sequelize.sync().then(function() { 
-    console.log('Nice! Database looks fine') 
-}).catch(function(err) { 
-    console.log(err, "Something went wrong with the Database Update!")
-});
+// models.sequelize.sync().then(function() { 
+//     console.log('Nice! Database looks fine') 
+// }).catch(function(err) { 
+//     console.log(err, "Something went wrong with the Database Update!")
+// });
 
-app.get("/", function(req, res) {
-  res.send("Welcome to Passport with Sequelize");
-});
+// app.get("/", function(req, res) {
+//   res.send("Welcome to Passport with Sequelize");
+// });
 
-app.listen(5000, function(err) {
+app.listen(process.env.PORT, function(err) {
   if (!err) console.log("Site is live");
   else console.log(err);
 });
-console.log("Server working");
 
 module.exports.tone_analyzer = tone_analyzer;
