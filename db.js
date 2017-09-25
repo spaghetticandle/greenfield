@@ -20,8 +20,23 @@ db
   });
 
 const User = db.define("User", {
-  name: Sequelize.STRING,
-  username: Sequelize.STRING,
+  id: { 
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
+  },
+  name: {
+    type: Sequelize.STRING,
+    notEmpty: true
+  },
+  username: {
+    type: Sequelize.STRING,
+    notEmpty: true
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   post: Sequelize.INTEGER,
   personality: Sequelize.INTEGER,
 });
