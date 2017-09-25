@@ -27,22 +27,13 @@ const JwtStrategy = passportJwt.Strategy;
 
 const _ = require("lodash");
 
-const users = [
-  {
-    id: 1,
-    name: 'jonathanmh',
-    password: '%2yx4'
-  },
-  {
-    id: 2,
-    name: 'test',
-    password: 'test'
-  }
-];
+const users = require("./fakeuserdata.json");
+
+console.log('users', users);
 
 const jwtOptions = {}
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
-jwtOptions.secretOrKey = 'tasmanianDevil';
+jwtOptions.secretOrKey = process.env.JWT_SECRET;
 
 const strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
   console.log('payload received', jwt_payload);
