@@ -94,36 +94,42 @@ app.use(webpackMiddleware(compiler, {
         serverSideRender: false,
     }));
 
-app.get("/", (req, res) => {
-  console.log("SERVING HTML");
-  res.sendFile(__dirname + "/dist/index.html");
-});
-const ToneAnalyzerV3 = require('node_modules/../watson-developer-cloud/tone-analyzer/v3');
-var express = require("express");
-var app = express();
-var passport = require("passport");
-var session = require("express-session");
-var bodyParser = require("body-parser");
-var env = require("dotenv").load();
-var exphbs = require("express-handlebars");
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// app.get("/", (req, res) => {
+//   console.log("SERVING HTML");
+//   res.sendFile(__dirname + "/dist/index.html");
+// });
+// app.get("/", (req, res) => {
+//   console.log("SERVING HTML");
+//   res.sendFile(__dirname + "/dist/index.html");
+// });
+// const ToneAnalyzerV3 = require('node_modules/../watson-developer-cloud/tone-analyzer/v3');
+// var express = require("express");
+// var app = express();
+// var passport = require("passport");
+// var session = require("express-session");
+// var bodyParser = require("body-parser");
+// var env = require("dotenv").load();
+// var exphbs = require("express-handlebars");
 
 
 
-//For BodyParser
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// //For BodyParser
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
-// For Passport 
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret 
-app.use(passport.initialize()); 
-app.use(passport.session()); // persistent login sessions
+// // For Passport 
+// app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret 
+// app.use(passport.initialize()); 
+// app.use(passport.session()); // persistent login sessions
 
-//For Handlebars
-app.set('views', './app/views')
-app.engine('hbs', exphbs({
-    extname: '.hbs'
-}));
-app.set('view engine', '.hbs');
+// //For Handlebars
+// app.set('views', './app/views')
+// app.engine('hbs', exphbs({
+//     extname: '.hbs'
+// }));
+// app.set('view engine', '.hbs');
 
 app.post("/login", function (req, res) {
   let name = '';

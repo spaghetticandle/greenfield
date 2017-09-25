@@ -14,7 +14,6 @@ export class Personality extends React.Component {
   componentDidMount() {
     axios.get('api/personality_analysis').then(result => {
       const personality = result.data;
-      debugger;
       this.setState({ personality });
       const graphMap = this.state.personality.personality.map(trait => {
         return { x: trait.name, y: trait.percentile * 100 };
