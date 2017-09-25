@@ -1,8 +1,6 @@
 .env
 node_modules
-<<<<<<< HEAD
 config/
-=======
+fakeuserdata.json
 config/config.json
 
->>>>>>> Refactor server & db, add local auth
