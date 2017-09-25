@@ -32,7 +32,7 @@ export class Sidebar extends React.Component {
               <NavLink to="/diary">Your Diary</NavLink>
             </div>
             <div className="row">
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/loginform">Login</NavLink>
             </div>
             <div className="row">
               <NavLink to="/signup">Sign Up</NavLink>

@@ -27,7 +27,7 @@ class App extends React.Component {
               <Route path="/moods" component={Moods} />
               <Route path="/newentry" component={NewEntry} />
               <Route path="/diary" component={Diary} />
-              <Route path="/login" component={Login} />
+              <Route path="/loginform" component={Login} />
               <Route path="/signup" component={SignUp} />
             </Switch>
           </div>
