@@ -23,9 +23,9 @@ export class Sidebar extends React.Component {
           <div className="row">
             <NavLink to="/dashboard">Dashboard</NavLink>
           </div>
-          <div className="row">
+          {/* <div className="row">
             <NavLink to="/settings">Settings</NavLink>
-          </div>
+          </div> */}
           <div className="row">
             Your Data
             <div className="container">
