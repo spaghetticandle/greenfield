@@ -4,7 +4,8 @@
   "description": "There are many benefits out there for keeping a journal and logging your mood each day. It helps you become more conscious of your feelings, allows you to more clearly see the factors that may cause certains moods, and gives you a general overview of what kind of person you are and how you change over time.",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build",
+    "start": "npm run build && node server.js",
+    "start:dev": "npm run build && nodemon server.js",
     "build": "webpack -d && cp src/index.html dist/index.html",
     "build:prod": "webpack -p && cp src/index.html dist/index.html"
   },
